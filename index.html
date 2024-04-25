@@ -11,7 +11,15 @@
 
 </head>
 <body>
-<h1>Banana Music</h1>
+<div class="upTitle">
+    <h1 class="Name">Banana Music</h1>
+    <div>
+        <button class="modeBtn">
+            <i class="fas fa-sun modeIcon"></i>
+        </button>
+    </div>
+</div>
+
 <div class="musicContainer  ">
     <div class="musicInfo">
         <h4 id="title"></h4>
@@ -23,7 +31,7 @@
     <audio id="audio" src=""></audio>
 
     <div class="imageContainer">
-        <img alt="musicCover" id="cover" src="">
+        <img alt="music cover" id="cover" src="">
     </div>
     <div class="navigation">
         <button class="actionBtn" id="prev">
@@ -38,6 +46,14 @@
 
     </div>
 </div>
+
+<div class="addMusicContainer">
+    <input id="addMusicInput" class="addInput" type="text" placeholder="Enter music name">
+    <button onclick="addMusic()">
+        add music
+    </button>
+</div>
+
 <script src="main.js"></script>
 </body>
 </html>

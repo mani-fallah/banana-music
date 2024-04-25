@@ -125,5 +125,21 @@ body{
     height: 100%;
     width: 0%;
     transition: width 0.1s linear;
-
+}
+.modeBtn{
+    background-color: inherit;
+    /*border-radius: 50%;*/
+    border: None;
+    cursor: pointer;
+}
+.fa-sun{
+    color: black;
+}
+.Name{
+    color : black;
+}
+.upTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

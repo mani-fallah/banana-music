@@ -7,10 +7,11 @@ const progress = document.querySelector('.progress')
 const progressContainer = document.querySelector('.progressContainer')
 const title = document.querySelector('#title')
 const cover = document.querySelector('#cover')
-
+const  body = document.getElementsByTagName('body')[0]
+const addMusicInput = document.getElementById('addMusicInput')
 // song title
-const songs = ['16.6-sorena','biTo','Rimaazz']
-let songIndex = 2
+const songs = ['16.6-sorena','Rimaazz','Andy - Dokhtar Irooni']
+let songIndex = 0
 loadSong(songs[songIndex])
 
 // load song from dom
@@ -78,7 +79,7 @@ function nextSong()
 function updateProgress(e)
 {
  let {duration,currentTime} = e.srcElement;
- const progressPercent = (duration*currentTime)/100;
+    const progressPercent = (currentTime / duration) * 100;
  progress.style.width = `${progressPercent}%`
 }
 function setProgress(e){
@@ -89,6 +90,56 @@ function setProgress(e){
     audio.currentTime = (clickX/width) * duration
 
 }
-audio.addEventListener('timeUpdate',updateProgress)
+audio.addEventListener("timeupdate",updateProgress)
 progressContainer.addEventListener('click',setProgress)
 audio.addEventListener('ended',nextSong)
+
+
+// change mode
+function changeMode()
+{
+    if(mode.classList.contains('fa-sun')){
+        mode.classList.remove('fa-sun');
+        mode.classList.add('fa-moon');
+        mode.style.color = 'white';
+        modeBtn.style.border = 'none';
+        console.log("night");
+        body.style.backgroundImage = "linear-gradient(0deg,gray 23.8%,black 92%";
+        Name.style.color = 'yellow';
+        musicContainer.style.backgroundColor = 'black'
+        play.style.backgroundColor = 'black'
+        prev.style.backgroundColor = 'black'
+        next.style.backgroundColor = 'black'
+        cover.style.border= '2px solid white'
+    }
+    else {
+        mode.classList.add('fa-sun');
+        mode.classList.remove('fa-moon');
+        mode.style.color = 'black';
+        modeBtn.style.border = 'none';
+        console.log("day")
+        body.style.backgroundImage = "linear-gradient(0deg,white 23.8%,#ffff6f 92%)"
+        Name.style.color = 'black'
+        musicContainer.style.backgroundColor = 'white'
+        play.style.backgroundColor = 'white'
+        prev.style.backgroundColor = 'white'
+        next.style.backgroundColor = 'white'
+        cover.style.border= '2px solid black'
+
+    }
+}
+
+const mode = document.querySelector('.modeIcon')
+mode.addEventListener('click',changeMode)
+
+const modeBtn = document.querySelector('.modeBtn')
+const Name= document.querySelector('.Name')
+
+// add music
+function addMusic()
+{
+    let output = addMusicInput.value
+    console.log(output)
+    songs.push(output)
+    localStorage.setItem(songs)
+}
