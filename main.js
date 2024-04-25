@@ -10,9 +10,15 @@ const cover = document.querySelector('#cover')
 const  body = document.getElementsByTagName('body')[0]
 const addMusicInput = document.getElementById('addMusicInput')
 // song title
-const songs = ['16.6-sorena','Rimaazz','Andy - Dokhtar Irooni']
+// const songs = ['16.6-sorena','Rimaazz','Andy - Dokhtar Irooni']
+
+// loadSong(songs[songIndex])
+let songs = null;
+document.addEventListener('DOMContentLoaded',(evt) => {
+    songs= getSongs();
+})
 let songIndex = 0
-loadSong(songs[songIndex])
+
 
 // load song from dom
 function loadSong(song) {
@@ -141,5 +147,17 @@ function addMusic()
     let output = addMusicInput.value
     console.log(output)
     songs.push(output)
-    localStorage.setItem(songs)
+    save(songs)
+
+
+}
+function getSongs()
+{
+    const savedSongs = JSON.parse(localStorage.getItem("songs"))
+    return savedSongs;
+}
+
+function save(songs)
+{
+    localStorage.setItem("songs",JSON.stringify(songs))
 }
