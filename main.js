@@ -16,9 +16,9 @@ const addMusicInput = document.getElementById('addMusicInput')
 let songs = null;
 document.addEventListener('DOMContentLoaded',(evt) => {
     songs= getSongs();
+    loadSong(songs[songIndex])
 })
 let songIndex = 0
-
 
 // load song from dom
 function loadSong(song) {
@@ -144,16 +144,21 @@ const Name= document.querySelector('.Name')
 // add music
 function addMusic()
 {
-    let output = addMusicInput.value
-    console.log(output)
-    songs.push(output)
-    save(songs)
+    if (addMusicInput.value !== "" && addMusicInput.value != null)
+    {
+        let output = addMusicInput.value
+        console.log(output)
+        songs.push(output)
+        save(songs)
+    }
+
 
 
 }
 function getSongs()
 {
-    const savedSongs = JSON.parse(localStorage.getItem("songs"))
+    let savedSongs;
+    savedSongs = JSON.parse(localStorage.getItem("songs"));
     return savedSongs;
 }
 
